@@ -1,0 +1,13 @@
+---
+title: "BacModEq"
+author: "Martin Skarzynski"
+date: "May 22, 2017"
+output: html_document
+mathjax: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+
+---
+
+Here is an equation:
+
+$$\frac{a+b}{b} = 1 + \frac{a}{b}$$ 
+

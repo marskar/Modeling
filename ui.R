@@ -1,38 +1,40 @@
-#
-# This is the user-interface definition of a Shiny web application. You can
-# run the application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-# 
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
 
-# Define UI for application that draws a histogram
-shinyUI(fluidPage(
+# Define UI for slider demo application
+shinyUI(pageWithSidebar(
   
-  # Application title
-  titlePanel("Old Faithful Geyser Data"),
+  #  Application title
+  headerPanel("Sliders"),
   
-  # Sidebar with a slider input for number of bins 
-  sidebarLayout(
-    sidebarPanel(
-       sliderInput("f",
-                   "Select a value",
-                   min = 0,
-                   max = 1,
-                   value = 0.5)
-    ),
-        sliderInput("e",
-                "Select a value",
-                min = 0,
-                max = 1,
-                value = 0.5)
-     ),    
-    # Show a plot of the generated distribution
-    mainPanel(
-       plotOutput("odePlot")
-    )
+  # Sidebar with sliders that demonstrate various available options
+  sidebarPanel(
+    # Simple integer interval
+    sliderInput("e", "e:", 
+                min=0, max=1, value=0.5),
+    
+    # Decimal interval with step value
+    sliderInput("f", "f:", 
+                min = 0, max = 1, value = 0.5, step= 0.1),
+    
+    # Specification of range within an interval
+    sliderInput("Erange", "e range:",
+                min = 0, max = 1, value = c(0.2,0.5)),
+    
+    # Specification of range within an interval
+    sliderInput("Frange", "f range:",
+                min = 0, max = 1, value = c(0.2,0.5)),
+    
+    # Animation with custom interval (in ms) to control speed, plus looping
+    sliderInput("Eanimate", "Looping Animation:", 0, 1, 0.5, step = 0.1, 
+                animate=animationOptions(interval=1000, loop=T)),
+    
+    # Animation with custom interval (in ms) to control speed, plus looping
+    sliderInput("Fanimate", "Looping Animation:", 0, 1, 0.5, step = 0.1, 
+                animate=animationOptions(interval=1000, loop=T))
+  ),
+  
+  # Show a table summarizing the values entered
+  mainPanel(
+    tableOutput("values")
   )
 ))
